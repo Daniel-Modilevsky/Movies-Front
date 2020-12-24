@@ -3,7 +3,6 @@
 /*eslint no-console: "error"*/
 
 $(function() {
-    getListeners();
 });
 
 function getIndex(){
@@ -52,6 +51,7 @@ function postRegister(){
         };
         $.ajax({
             url: 'http://localhost:8080/api/authentication/signup',
+            type: 'POST', 
             data:formData,
             cache: false,
             dataType : 'json'
@@ -69,17 +69,7 @@ function postRegister(){
 }
 
 function getListeners(){
-    /*$("#loginForm").on('submit', () => {
-        postLogin();
-    });
-     $("#login-button").click(() => {
-        postLogin();
-    });
-    
-    $("#registerButton").click(() => {
-        postRegister();
-    });
-    */
+ 
 };
 
 $(document).on('click', '#login-button', function(e){

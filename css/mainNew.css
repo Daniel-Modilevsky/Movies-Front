@@ -1,0 +1,56 @@
+/* 
+ <header>
+    </header>
+    <main>   
+        <section>
+            <h1>Temp Page</h1>
+            <h5> Catch Here </h5>
+        </section>
+         <div class="list-Movie-Container">
+        </div>
+        <div class="list-Movie-Container">
+        </div>
+    </main>
+   <footer>
+   </footer>
+
+*/
+
+/*===========================
+Layouts
+===========================*/
+
+header{
+    display: block;
+    height: 7%;
+    width: 100%;
+    background-color: burlywood;
+    border: 1px solid gray;
+        padding: 2px;
+}
+
+main{
+    padding: 2px;
+    display: block;
+    height: 85%;
+    width: 100%;
+    background-color: darkcyan;
+    border: 1px solid gray;
+}
+.big-section{
+    display: block;
+    height: 500px;
+    width: 100%;
+    background-color:darkorange;
+    border: 1px solid gray;
+    padding: 2px;
+}
+
+footer{
+    display: block;
+    height: 7%;
+    width: 100%;
+    background-color:dodgerblue;
+    border: 1px solid gray;
+    padding: 2px;
+}
