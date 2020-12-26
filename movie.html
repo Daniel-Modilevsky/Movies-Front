@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Index Page </title>
+    <title>Movie Page </title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -17,8 +17,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/hover.css" rel="stylesheet">
 
-
+    
 
 
     <!-- Template Main CSS File -->
@@ -34,14 +35,13 @@
 
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="/homepage"><i class="bx bx-home selected"></i> Home</a></li>
-                    <li><a href="/"><i class="bx bx-hash"></i> Explore</a></li>
-                    <li><a href="/"><i class="bx bx-bell"></i> Notifications</a></li>
-                    <li><a href="/"><i class="bx bx-message"></i> Messages</a></li>
-                    <li><a href="/"><i class="bx bx-bookmark"></i> Bookmarks</a></li>
-                    <li><a href="/"><i class="bx bx-detail"></i> Lists</a></li>
-                    <li><a href="/"><i class="bx bx-user"></i> Profile</a></li>
-                    <li><a href="/"><i class="bx bx-dots-horizontal-rounded"></i> More</a></li>
+                    <li><a href="home.html"><i class="bx bx-home selected"></i> Home</a></li>
+                    <li><a href="profile.html"><i class="bx bx-user"></i> Profile</a></li>
+                    <li><a href="toprated.html"><i class="bx bx-hash"></i> Top Rated Movies</a></li>
+                    <li><a href="recomend.html"><i class="bx bx-message"></i> Recomandations</a></li>
+                    <li><a href="smart.html"><i class="bx bx-bookmark"></i> Smart Search</a></li>
+                    <li><a href="lists.html"><i class="bx bx-detail"></i> Lists</a></li>
+                    <li><a href="index.html"><i class="bx bx-dots-horizontal-rounded"></i> Logout</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
@@ -49,99 +49,35 @@
         <div id="mini-profile">
             <img src="img/profile-demo.png">
             <h4 class="text-light"> {{user.user_name}} </h4>
-        </div>    
-    </nav>
-    
-    
-    <aside id="aside-nav-right">
-        
-        <form class="form-inline">
-            <input class="form-control search-bar" type="search" placeholder="Search Users" aria-label="Search">
-            <button class="btn btn-outline-info search-button" type="submit"><i class="bx bx-search"></i></button>
-        </form>
-        
-        <div class="Trends-conteiner">
-            <div class="alert-info follwing header-h3" role="alert">
-                <h3>Trends For You</h3>
-            </div>
-            <div class="alert-info follwing" role="alert">
-                <img src="img/profile-demo5.jpg">
-                <h4> Nicky Minaj </h4>
-                <form class="follow-form">
-                    <button type="submit" class="btn btn-outline-info btn-sm">Follow</button>
-                </form>
-            </div>
-            <div class="alert-info follwing" role="alert">
-                <img src="img/profile-demo6.jpg">
-                <h4> Drake </h4>
-                <form class="follow-form">
-                    <button type="submit" class="btn btn-outline-info btn-sm">Follow</button>
-                </form>
-            </div>
-            <div class="alert-info follwing" role="alert">
-                <img src="img/profile-demo7.jpg">
-                <h4> Travis Scott </h4>
-                <form class="follow-form">
-                    <button type="submit" class="btn btn-outline-info btn-sm">Follow</button>
-                </form>
-            </div>
         </div>
-        
-        
-        <div class="WhoFollow-conteiner">
-            <div class="alert-dark follwer header-h3" role="alert">
-                <h3>Who Follow You</h3>
-            </div>
-            <div class="alert-dark follwer" role="alert">
-                <img src="img/profile-demo3.jpg">
-                <h4> Eminem </h4>
-                <form class="follow-form">
-                    <button type="submit" class="btn btn-outline-success btn-sm">Show</button>
-                </form>
-            </div>
-            <div class="alert-dark follwer" role="alert">
-                <img src="img/profile-demo2.jpg">
-                <h4> Kendrick Lamar </h4>
-                <form class="follow-form">
-                    <button type="submit" class="btn btn-outline-success btn-sm">Show</button>
-                </form>
-            </div>
-            <div class="alert-dark follwer" role="alert">
-                <img src="img/profile-demo4.jpg">
-                <h4> Anderson Pack </h4>
-                <form class="follow-form">
-                    <button type="submit" class="btn btn-outline-success btn-sm">Show</button>
-                </form>
-            </div>
-        </div>
-        
-
         <nav class="nav-footer">
             <ul>
-                <li><a href="#"> Terms of Service </a></li>
                 <li><a href="#"> Privacy Policy </a></li>
-                <li><a href="#"> Ads info </a></li>
-                <li><a href="#"> More... </a></li>
                 <li> © 2020 Daniel Modilevsky Jonatan Kubany.</li>
             </ul>
         </nav>
-        
-    </aside>
+    </nav>
     
     <main data-aos="fade-up">
         <header>
-            <h1>Home</h1>
+            <h1 id="movie-header"></h1>
+             <form>
+                <input class="form-control search-bar" type="search" placeholder="Search Users" aria-label="Search">
+                <button class="btn btn-outline-info search-button" type="submit"><i class="bx bx-search"></i></button>
+            </form>
         </header>
-        <section id="my-tweet">
+        <div id="movie">
+        </div>
+        <section id="my-comment" class="hvr-underline-from-left">
             <img src="img/profile-demo.png">
             <form id="" method="post">
                 <textarea class="" placeholder="What's Happening?"></textarea>
-                <button type="submit" class="btn btn-primary">tweet</button>
+                <button type="submit" class="btn btn-danger">Comment</button>
             </form>
         </section>
         
         <div id="pid">
-            <article class="pid-tweet">
+            <article class="pid-comment hvr-rectangle-out ">
                 <div class="article-body">
                     <img src="img/profile-demo2.jpg"/>
                     <p>I am a sinner, Who's probably gonna sin again, Lord forgive me, Things I don't understand</p>
@@ -160,7 +96,7 @@
                 </footer>
             </article>
             
-            <article class="pid-tweet">
+            <article class="pid-comment hvr-rectangle-out">
                 <div class="article-body">
                     <img src="img/profile-demo4.jpg"/>
                     <p>Brandon Paak Anderson, a.k.a. Anderson .Paak, is a singer, songwriter, producer, and drummer from Oxnard, California. He released his debut EP, Violets Are Blue, under his original moniker, Breezy Lovejoy, in 2010.</p>
@@ -179,7 +115,7 @@
                 </footer>
             </article>
             
-            <article class="pid-tweet">
+            <article class="pid-comment hvr-rectangle-out">
                 <div class="article-body">
                     <img src="img/profile-demo3.jpg"/>
                     <p>You better lose yourself in the music, the moment, you own it, you had better never known. You only have one shot, do not get your chance to blow.</p>
@@ -197,32 +133,19 @@
                     </ul>
                 </footer>
             </article>
-            
         </div>
     </main>
     
 
     
-
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.0/venobox.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>-->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="js/main.js"></script>
-    <script>
-        AOS.init();
-    </script>
+    <script src="js/clientServer.js"></script>
+    <script> AOS.init();  </script>
 </body>
 </html>
