@@ -5,11 +5,11 @@ var movieID = '5fe392b1056d0822ecc9f3f8';
 
 $(function() {
     //getMovies();
-    getComedy();
-    getAction();
-    getDrama();
+    //getComedy();
+    //getAction();
+    //getDrama();
     //var movieI = sessionStorage.getItem('favoriteMovie');
-    getMovie(movieID);
+    //getMovie(movieID);
 });
 
 
@@ -44,7 +44,7 @@ function postLogin(){
             'password': $('input[name=password]').val()
         };
         $.ajax({
-            url: 'http://localhost:8080/api/authentication/login',
+            url: 'http://localhost:8080/api/authentication/login/',
             type: 'POST', 
             data:formData,
             cache: false,
@@ -212,6 +212,34 @@ function getMovie(idOfMovie){
         }   
     });
 }
+
+function getIMDB() {
+    $.ajax({
+        url: 'http://localhost:8080/api/movies/IMDB',
+        type: 'GET',
+        success: function(message) {
+            console.log(message.data);
+            console.log(message.data.title);
+            console.log(message.data.year);
+            console.log(message.data.length);
+            console.log(message.data.rating);
+            console.log(message.data.plot);
+            console.log(message.data.poster);
+            message.data.cast.forEach(element => console.log(element.actor));
+            console.log(message.data.trailer.link);
+            console.log('Success - Index');
+        },
+        error: function() {
+            alert('Error - index')
+        }
+    });
+};
+
+
+$(document).on('click', '#test', function(e) {
+    alert("Here");
+    getIMDB("avengers");
+});
 
 
 $(document).on('click', '#login-button', function(e){
