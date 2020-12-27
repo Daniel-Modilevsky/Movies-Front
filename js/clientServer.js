@@ -1,5 +1,12 @@
 /*global $ */
 /*jslint browser: true*/
+
+//const { json } = require("body-parser");
+
+//const { json } = require("body-parser");
+
+//const { get } = require("../../movies-back/api/movies/movies-route");
+
 /*eslint no-console: "error"*/
 var movieID = '5fe392b1056d0822ecc9f3f8';
 
@@ -77,7 +84,6 @@ function postRegister(){
         })
         .done(function(message) {
             console.log(`Success - Register - ${message}`);
-            //window.location = 'temp2.html';
             top.location.href="home.html"
         })
         .fail(function(jqXHR, textStatus, message){  
@@ -90,7 +96,7 @@ function getListeners(){
  
 };
 
-/*function getMovies(){
+function getMovies(){
     $.ajax({
         url: 'http://localhost:8080/api/movies',
         type: 'GET',
@@ -104,14 +110,85 @@ function getListeners(){
 
             "</article>"
         );
-    });
-        },
+            });
+        },  
         error:function(){  
            alert('Error - get - movies')  
         }   
     });
 }
-*/
+
+
+
+
+
+
+
+
+
+function getMoviesDetalies(){
+    $.ajax({
+        url: 'http://localhost:8080/api/movies',
+        type: 'GET',
+        success: function(movies) {
+        console.log(`Success - get - moviesNames = ${movies.length}`);
+        const moviesarr=[];
+        movies.forEach(movie => {
+        moviesarr.push(movie.name);
+        });
+       let result = [];
+
+        moviesarr.forEach(element => {
+        getIMDB(element);
+        const Details = (localStorage.getItem(element));
+        result.push({name: element , rating:String(JSON.parse(Details).data.rating) });
+    });
+        
+        let sortedInput = result.slice().sort((a, b) => b.rating - a.rating);
+        console.log(sortedInput);
+        },  
+        error:function(){  
+           alert('Error - get - movies')  
+        }   
+    });
+}
+
+
+
+function getIMDB(name) {
+    const formData = {
+        'name' : name
+    };
+    $.ajax({
+        url: 'http://localhost:8080/api/movies/IMDB',
+        type: 'GET',
+        data: formData,
+        success: function(message) {
+            /*
+            console.log(message.data);
+            console.log(message.data.title);
+            console.log(message.data.year);
+            console.log(message.data.length);
+            console.log(message.data.rating);
+            console.log(message.data.plot);
+            console.log(message.data.poster);
+            message.data.cast.forEach(element => console.log(element.actor));
+            console.log(message.data.trailer.link);
+            */
+            localStorage.setItem(name,JSON.stringify(message));
+            
+           // console.log('Success - Index');
+        },
+        error: function() {
+            alert('Error - index')
+        }
+    });
+};
+
+
+
+
+
 function getComedy(){
     $.ajax({
         url: 'http://localhost:8080/api/categiries/Comedy',
@@ -213,27 +290,6 @@ function getMovie(idOfMovie){
     });
 }
 
-function getIMDB() {
-    $.ajax({
-        url: 'http://localhost:8080/api/movies/IMDB',
-        type: 'GET',
-        success: function(message) {
-            console.log(message.data);
-            console.log(message.data.title);
-            console.log(message.data.year);
-            console.log(message.data.length);
-            console.log(message.data.rating);
-            console.log(message.data.plot);
-            console.log(message.data.poster);
-            message.data.cast.forEach(element => console.log(element.actor));
-            console.log(message.data.trailer.link);
-            console.log('Success - Index');
-        },
-        error: function() {
-            alert('Error - index')
-        }
-    });
-};
 
 
 $(document).on('click', '#test', function(e) {
@@ -251,6 +307,15 @@ $(document).on('click', '#registerButton', function(e){
     e.preventDefault();
     postRegister();
 });
+
+$(document).on('click', '#TopRated', function(e){
+    e.preventDefault();
+    let moviesarr=[];
+    getMoviesDetalies();
+    //moviesarr = getMoviesDetalies();
+    //console.log(moviesarr);
+});
+
 /*
 $(document).on('click', '.movie-mini', function(e){
     e.preventDefault();
