@@ -77,7 +77,6 @@ function postRegister(){
         })
         .done(function(message) {
             console.log(`Success - Register - ${message}`);
-            //window.location = 'temp2.html';
             top.location.href="home.html"
         })
         .fail(function(jqXHR, textStatus, message){  
@@ -90,7 +89,7 @@ function getListeners(){
  
 };
 
-/*function getMovies(){
+function getMovies(){
     $.ajax({
         url: 'http://localhost:8080/api/movies',
         type: 'GET',
@@ -104,14 +103,45 @@ function getListeners(){
 
             "</article>"
         );
-    });
-        },
+            });
+        },  
         error:function(){  
            alert('Error - get - movies')  
         }   
     });
 }
-*/
+
+
+function getMoviesDetalies(){
+    $.ajax({
+        url: 'http://localhost:8080/api/movies',
+        type: 'GET',
+        success: function(movies) {
+        console.log(`Success - get - moviesNames = ${movies.length}`);
+        const moviesarr=[];
+        movies.forEach(movie => {
+        moviesarr.push(movie.name);
+        });
+        console.log(moviesarr);
+        moviesarr.forEach(element => {
+            getIMDB(element);
+            //getIMDB(element);
+            //moviesarr.push(movie.name);
+            });
+            //return moviesarr;
+        },  
+        error:function(){  
+           alert('Error - get - movies')  
+        }   
+    });
+}
+
+
+
+
+
+
+
 function getComedy(){
     $.ajax({
         url: 'http://localhost:8080/api/categiries/Comedy',
@@ -213,10 +243,14 @@ function getMovie(idOfMovie){
     });
 }
 
-function getIMDB() {
+function getIMDB(name) {
+    const formData = {
+        'name' : name
+    };
     $.ajax({
         url: 'http://localhost:8080/api/movies/IMDB',
         type: 'GET',
+        data: formData,
         success: function(message) {
             console.log(message.data);
             console.log(message.data.title);
@@ -251,6 +285,15 @@ $(document).on('click', '#registerButton', function(e){
     e.preventDefault();
     postRegister();
 });
+
+$(document).on('click', '#TopRated', function(e){
+    e.preventDefault();
+    let moviesarr=[];
+    getMoviesDetalies();
+    //moviesarr = getMoviesDetalies();
+    //console.log(moviesarr);
+});
+
 /*
 $(document).on('click', '.movie-mini', function(e){
     e.preventDefault();
