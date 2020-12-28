@@ -1,6 +1,8 @@
 /*global $ */
 /*jslint browser: true*/
 
+//const { getByCategory } = require("../../movies-back/api/movies/movies-controller");
+
 //const { json } = require("body-parser");
 
 //const { json } = require("body-parser");
@@ -119,6 +121,30 @@ function getMovies(){
 }
 
 
+function getMoviesByCategory(category){
+    console.log(`http://localhost:8080/api/categories/:${category}`);
+    $.ajax({
+        url: `http://localhost:8080/api/categories/${category}`,
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $(".list1").empty();
+            $(".list1").append(`<h4>${category}</h4>`);
+            movies.forEach(movie => {
+                $('.list1').append(
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
+                "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
+                "</article>"
+        );
+    });
+        },
+        error:function(){  
+           alert('Error - getMoviesByCategory')  
+        }   
+    });
+
+
+}
 
 
 
@@ -186,12 +212,12 @@ function getIMDB(name) {
 };
 
 
-
+/*
 
 
 function getComedy(){
     $.ajax({
-        url: 'http://localhost:8080/api/categiries/Comedy',
+        url: 'http://localhost:8080/api/categories/Comedy',
         type: 'GET',
         success: function(movies) {
             console.log(`Success - get - movies = ${movies.length}`);
@@ -213,7 +239,7 @@ function getComedy(){
 
 function getAction(){
     $.ajax({
-        url: 'http://localhost:8080/api/categiries/Action',
+        url: 'http://localhost:8080/api/categories/Action',
         type: 'GET',
         success: function(movies) {
             console.log(`Success - get - movies = ${movies.length}`);
@@ -236,7 +262,7 @@ function getAction(){
 
 function getDrama(){
     $.ajax({
-        url: 'http://localhost:8080/api/categiries/Drama',
+        url: 'http://localhost:8080/api/categories/Drama',
         type: 'GET',
         success: function(movies) {
             console.log(`Success - get - movies = ${movies.length}`);
@@ -290,7 +316,7 @@ function getMovie(idOfMovie){
     });
 }
 
-
+*/
 
 $(document).on('click', '#test', function(e) {
     alert("Here");
@@ -307,6 +333,12 @@ $(document).on('click', '#registerButton', function(e){
     e.preventDefault();
     postRegister();
 });
+
+$(document).on('click', '#GetMovies', function(e){
+    e.preventDefault();
+    getMoviesByCategory("Action");
+});
+
 
 $(document).on('click', '#TopRated', function(e){
     e.preventDefault();
