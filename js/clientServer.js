@@ -1,38 +1,23 @@
 /*global $ */
 /*jslint browser: true*/
-
-//const { getByCategory } = require("../../movies-back/api/movies/movies-controller");
-
-//const { json } = require("body-parser");
-
-//const { json } = require("body-parser");
-
-//const { get } = require("../../movies-back/api/movies/movies-route");
-
 /*eslint no-console: "error"*/
-var movieID = '5fe392b1056d0822ecc9f3f8';
+
 
 $(function() {
     //getMovies();
-    //getComedy();
-    //getAction();
-    //getDrama();
+    getComedy();
+    getAction();
+    getDrama();
     //var movieI = sessionStorage.getItem('favoriteMovie');
-    //getMovie(movieID);
+    getMovie();
 });
 
+let susu = '5fdf22df968be632f0b3c60c';
 
 function sendIdToMovie(idMovie){
-    window.name.movieID = idMovie;
-    console.log(movieID);
-    //getMovie(movieID);
+    localStorage.setItem("favoriteMovie", idMovie);
     top.location.href="movie.html";
-   // sessionStorage.setItem("favoriteMovie", movieID);
-
-    //window.location.href = 'movie.html' + '#' + movieID;
-
 }
-
 
 function getIndex(){
     $.ajax({
@@ -120,7 +105,6 @@ function getMovies(){
     });
 }
 
-
 function getMoviesByCategory(category){
     console.log(`http://localhost:8080/api/categories/:${category}`);
     $.ajax({
@@ -142,14 +126,7 @@ function getMoviesByCategory(category){
            alert('Error - getMoviesByCategory')  
         }   
     });
-
-
 }
-
-
-
-
-
 
 
 function getMoviesDetalies(){
@@ -178,8 +155,6 @@ function getMoviesDetalies(){
         }   
     });
 }
-
-
 
 function getIMDB(name) {
     const formData = {
@@ -211,10 +186,7 @@ function getIMDB(name) {
     });
 };
 
-
 /*
-
-
 function getComedy(){
     $.ajax({
         url: 'http://localhost:8080/api/categories/Comedy',
@@ -247,7 +219,7 @@ function getAction(){
             $(".list2").append("<h4>Action</h4>");
             movies.forEach(movie => {
                 $('.list2').append(
-            "<article class='movie-mini hvr-curl-top-right hvr-shrink'>" +
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
             "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
 
             "</article>"
@@ -270,7 +242,7 @@ function getDrama(){
             $(".list3").append("<h4>Drama</h4>");
             movies.forEach(movie => {
                 $('.list3').append(
-            "<article class='movie-mini hvr-curl-top-right hvr-shrink'>" +
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
             "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
 
             "</article>"
@@ -283,9 +255,9 @@ function getDrama(){
     });
 }
 
-function getMovie(idOfMovie){
+function getMovie(){
     $.ajax({
-        url: `http://localhost:8080/api/movies/${idOfMovie}`,
+        url: `http://localhost:8080/api/movies/${localStorage.getItem("favoriteMovie")}`,
         type: 'GET',
         success: function(movie) {
             console.log('Success - movieID');
@@ -318,11 +290,34 @@ function getMovie(idOfMovie){
 
 */
 
+function postComment(){
+    const formData = {
+            'description' : $('textarea[name=description]').val(),
+            'creationBy': susu,
+            'commentOn': localStorage.getItem("favoriteMovie"),
+        };
+        $.ajax({
+            url: 'http://localhost:8080/api/comments/',
+            type: 'POST', 
+            data:formData,
+            cache: false,
+            dataType : 'json'
+        })
+        .done(function(newComment) {
+            console.log(`Success - new Comment - ${newComment}`);
+            alert(newComment);
+            top.location.href="movie.html"
+        })
+        .fail(function(jqXHR, textStatus, message){  
+            alert(`Error - new Comment - ${textStatus} ,  ${message}`); 
+            $('error-handler').html(JSON.stringify(err));
+        });
+}
+
 $(document).on('click', '#test', function(e) {
     alert("Here");
     getIMDB("avengers");
 });
-
 
 $(document).on('click', '#login-button', function(e){
     e.preventDefault();
@@ -339,6 +334,10 @@ $(document).on('click', '#GetMovies', function(e){
     getMoviesByCategory("Action");
 });
 
+$(document).on('click', '#comment-button', function(e){
+    e.preventDefault();
+    postComment();
+});
 
 $(document).on('click', '#TopRated', function(e){
     e.preventDefault();
