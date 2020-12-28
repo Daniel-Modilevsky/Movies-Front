@@ -4,13 +4,7 @@
 
 
 $(function() {
-    //getMovies();
-    getComedy();
-    getAction();
-    getDrama();
-    //var movieI = sessionStorage.getItem('favoriteMovie');
-    getMovie();
-    getComments();
+    ///getComments();
 });
 
 let susu = '5fdf22df968be632f0b3c60c';
@@ -47,7 +41,8 @@ function postLogin(){
         })
         .done(function(message) {
             console.log(`Success - Login - ${message}`);
-            //window.location = 'temp2.html';
+            localStorage.setItem("User", message);
+            console.log(localStorage.getItem("User"));
             top.location.href="home.html"
         })
         .fail(function(jqXHR, textStatus, message){  
@@ -129,7 +124,25 @@ function getMoviesByCategory(category){
     });
 }
 
+/*
+function GetPopularMovie(){
+    const id = Math.floor(Math.random() * 5) + 1;
 
+    console.log(user);
+    $('.list1').append(
+        '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
+        "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
+        "</article>"
+);}
+*/
+
+function Parseusername(){
+    let user = localStorage.getItem("User");
+    console.log(user);
+    $('userName').append(
+        `${user}`
+);}
+    
 function getMoviesDetalies(){
     $.ajax({
         url: 'http://localhost:8080/api/movies',
