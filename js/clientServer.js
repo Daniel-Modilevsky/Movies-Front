@@ -10,6 +10,7 @@ $(function() {
     getDrama();
     //var movieI = sessionStorage.getItem('favoriteMovie');
     getMovie();
+    getComments();
 });
 
 let susu = '5fdf22df968be632f0b3c60c';
@@ -286,6 +287,31 @@ function postComment(){
             $('error-handler').html(JSON.stringify(err));
         });
 }
+
+function getComments(){
+     $.ajax({
+        url: `http://localhost:8080/api/moviecomments/${localStorage.getItem("favoriteMovie")}`,
+        type: 'GET',
+        success: function(comments) {           
+            let myComments = comments.comments;
+            $("#pid2").empty();
+                myComments.forEach(comment => {
+                $("#pid2").append(
+                '<article class="pid-comment hvr-rectangle-out ">'+
+                '<div class="article-body">'+
+                '<label>'+comment.creationByName+':</label>'+
+                '<p>'+comment.description+'</p></div>'+
+                '<footer class="article-footer"><ul>'+
+                '<li class="icon-left"><i class="bx bx-message"></i><span>1</span></li>'+
+                '<li class="icon-right"><i class="bx bx-heart"></i><span>1</span></li></footer></article>'  
+            )});
+        },
+        error:function(){  
+           alert('Error - index')  
+        }   
+     })
+};
+
 
 $(document).on('click', '#test', function(e) {
     alert("Here");
