@@ -8,9 +8,11 @@ $(function() {
     getComedy();
     getAction();
     getDrama();
-    //var movieI = sessionStorage.getItem('favoriteMovie');
     getMovie();
     getComments();
+    //getPopulars();
+    setInterval(function(){ getPopulars(); }, 3000);
+
 });
 
 let susu = '5fdf22df968be632f0b3c60c';
@@ -106,7 +108,52 @@ function getMovies(){
     });
 }
 
-function getMoviesByCategory(category){
+
+
+function displayPreviousImage(movies , index) {
+    $("#our-recomandation").empty();
+    let movie = movies[index];
+    $('#our-recomandation').append("<img src = '" +'http://localhost:8080/' + movie.image + "'>" );
+}
+ function startTimer() {
+  setInterval(displayNextImage, 3000);
+}
+/*
+function getPopulars(){
+    $.ajax({
+        url: 'http://localhost:8080/api/populars',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $("#our-recomandation").empty();
+            movies.forEach(movie => {
+                $('#our-recomandation').append("<img src = '" +'http://localhost:8080/' + movie.image + "'>" );
+            });
+        },  
+        error:function(){  
+           alert('Error - get - movies')  
+        }   
+    });
+}
+*/
+let index = 0;
+function getPopulars(){
+    $.ajax({
+        url: 'http://localhost:8080/api/populars',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            displayPreviousImage(movies, index )
+            index++;
+            if(index == 5) index = 0;
+        },  
+        error:function(){  
+           alert('Error - get - movies')  
+        }   
+    });
+}
+
+/*function getMoviesByCategory(category){
     console.log(`http://localhost:8080/api/categories/:${category}`);
     $.ajax({
         url: `http://localhost:8080/api/categories/${category}`,
@@ -128,8 +175,8 @@ function getMoviesByCategory(category){
         }   
     });
 }
-
-
+*/
+/*
 function getMoviesDetalies(){
     $.ajax({
         url: 'http://localhost:8080/api/movies',
@@ -156,7 +203,7 @@ function getMoviesDetalies(){
         }   
     });
 }
-
+*/
 function getIMDB(name) {
     const formData = {
         'name' : name
@@ -187,7 +234,7 @@ function getIMDB(name) {
     });
 };
 
-/*
+
 function getComedy(){
     $.ajax({
         url: 'http://localhost:8080/api/categories/Comedy',
@@ -289,7 +336,7 @@ function getMovie(){
     });
 }
 
-*/
+
 
 function postComment(){
     const formData = {
