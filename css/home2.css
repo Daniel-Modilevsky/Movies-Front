@@ -317,7 +317,9 @@ header form .search-button {
 # Home page - Pid
 --------------------------------------------------------------*/
 
-
+.img-popular-big:hover{
+    cursor: pointer;
+}
 
  #pid,  #pid2{
     background-color: black;
@@ -549,4 +551,75 @@ header form .search-button {
  .article-footer ul li i{
 	display:inline-block;
  }
+
+
+/*--------------------------------------------------------------
+# Recomandations - Pid
+--------------------------------------------------------------*/
+#recommend-pid {
+    display: block;
+    width:86%;
+    margin-left: 5%;
+}
+#recommend-pid article{
+    width:100%;
+    display: flex;
+    border: 1px solid gray;
+    margin-bottom: 0.5%;
+}
+
+#recommend-pid article aside {
+    width: 65%;
+    left:0%;
+    border-right: 1px solid gray;
+  
+}
+#recommend-pid article aside img {
+    width: 100%;
+    height: 400px;
+}
+#recommend-pid article nav {
+    padding-top: 2%;
+    width:35%;
+    background-color: beige;
+    right: 0%;
+    padding-right: 1%;
+}
+#recommend-pid article nav ul {
+    list-style: none;
+}
+
+#recommend-pid article nav ul li label{
+    display: inline-block;
+	margin-top: 2%;
+    font-size: 18px;
+    font-weight: bold;
+    color:#666;
+}
+
+#recommend-pid article nav ul li span{
+    list-style: none;
+    font-size: 15px;
+}
+
+#recommend-pid article nav ul li .movie-name{
+    color: #D27E7E;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+
+/*--------------------------------------------------------------
+# Profile
+--------------------------------------------------------------*/
+
+
+
+/*--------------------------------------------------------------
+# Top Rated
+--------------------------------------------------------------*/
+
+
+
 
