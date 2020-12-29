@@ -8,19 +8,20 @@ $(function() {
     /*
     getIndex();
      */
+    getIndex();
+
     getComedy();
     getAction();
     getDrama();
     getMovie();
     getComments();
     //getPopulars();
-    setInterval(function(){ getPopulars(); }, 3000);
+    //setInterval(function(){ getPopulars(); }, 3000);
     getRomance();
     getThriller();
     getAnimation();
-    getAnimation();
     getAdventure();
-    getRecomandations()
+    //getRecomandations()
 });
 
 let susu = '5fdf22df968be632f0b3c60c';
@@ -50,20 +51,22 @@ function postLogin(){
             'password': $('input[name=password]').val()
         };
         $.ajax({
-            url: 'http://localhost:8080/api/authentication/login/',
+            url: 'http://localhost:8080/api/authentication/login',
             type: 'POST', 
             data:formData,
             cache: false,
+            async:false,
             dataType : 'json'
         })
         .done(function(message) {
             console.log(`Success - Login - ${message}`);
-            //window.location = 'temp2.html';
+            console.log(localStorage.getItem("User"));
+            localStorage.setItem("User", formData.user_name);
             top.location.href="home.html"
         })
         .fail(function(jqXHR, textStatus, message){  
             alert(`Error - Login - ${textStatus} ,  ${message}`); 
-            $('error-handler').html(JSON.stringify(err));
+            $('error-handler').html(JSON.stringify(message));
         });
 }
 
@@ -83,6 +86,7 @@ function postRegister(){
         })
         .done(function(message) {
             console.log(`Success - Register - ${message}`);
+            localStorage.setItem("User", formData.user_name);
             top.location.href="home.html"
         })
         .fail(function(jqXHR, textStatus, message){  
@@ -91,9 +95,6 @@ function postRegister(){
         });
 }
 
-function getListeners(){
- 
-};
 
 function getMovies(){
     $.ajax({
@@ -411,7 +412,7 @@ function getAdventure(){
         }   
     });
 }
-function getMovie(){
+/*function getMovie(){
     $.ajax({
         url: `http://localhost:8080/api/movies/${localStorage.getItem("favoriteMovie")}`,
         type: 'GET',
@@ -443,6 +444,15 @@ function getMovie(){
         }   
     });
 }
+*/
+
+function Parseusername(){
+    let user = localStorage.getItem("User");
+    console.log(user);
+    $('#userName').append(
+        `${user}`
+    );
+;}
 
 
 
@@ -518,6 +528,7 @@ function getComments(){
 
 */
 
+
 function getRecomandations(){
      $.ajax({
         url: 'http://localhost:8080/api/populars/',
@@ -544,6 +555,44 @@ function getRecomandations(){
     });
 }
 
+function getMovie(){
+    $.ajax({
+        url: `http://localhost:8080/api/movies/${localStorage.getItem("favoriteMovie")}`,
+        type: 'GET',
+        success: function(movie) {
+            getIMDB(movie.movie.name);
+            const data = JSON.parse(localStorage.getItem(movie.movie.name));
+            console.log(data.data.title);
+
+            console.log('Success - movieID');
+            $("#movie-header").empty();
+            $("#movie-header").append(data.data.title +" - Movie");
+
+            $("#movie").empty();
+            $("#movie").append(
+                "<section id='movie-image'>" + 
+                "<img src='" + data.data.poster + "'></section>"+
+                "<div id='movie-details'><navbar class='movie-left'><ul>"+
+                "<li><label>Name</label> : <span class='movie-name'>" + data.data.title + "</span></li>" +
+                "<li><label>Time</label> : <span>"+data.data.length+"</span></li>" +
+                " <li><label>Year</label> : <span>"+data.data.year+"</span></li>" +
+                "<li><label>Rate</label> : <span>"+data.data.rating+"</span></li></ul></navbar>" +
+                "<aside class='movie-right'><ul>"+       
+                "<li><label>Categories</label> : <span>"+movie.movie.categories+"</span></li>"+
+                "<li><label>Actors</label> : <span>"+movie.movie.actors+"</span></li>"+ 
+                "<li><label>Writer</label> : <span>"+movie.movie.writer+"</span></li>"+ 
+                "<li><label>Director</label> : <span>"+movie.movie.director+"</span></li></ul></aside>"+ 
+                "<br>"+
+                "<br>"+
+                "<p><label>Story Line</label> : <span>"+data.data.plot+"</span></p></div>"
+            );
+            
+        },
+        error:function(){  
+           alert('Error - index')  
+        }   
+    });
+}
 
 
 $(document).on('click', '#test', function(e) {
