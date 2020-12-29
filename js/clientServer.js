@@ -6,9 +6,25 @@
 
 
 $(function() {
-    getMovie();
+    //getMovie();
     //getComments();
+
+    //getMovies();
+    /*    */
+    getIndex();
     getComedy();
+    getAction();
+    getDrama();
+    getMovie();
+    getComments();
+    //getPopulars();
+    setInterval(function(){ getPopulars(); }, 3000);
+    getRomance();
+    getThriller();
+    getAnimation();
+    getAnimation();
+    getAdventure();
+    getRecomandations()
 });
 
 let susu = '5fdf22df968be632f0b3c60c';
@@ -26,7 +42,8 @@ function getIndex(){
             console.log('Success - Index');
         },
         error:function(){  
-           alert('Error - index')  
+           alert('Error - index')
+           top.location.href="404.html"
         }   
     });
 }
@@ -102,11 +119,59 @@ function getMovies(){
             });
         },  
         error:function(){  
-           alert('Error - get - movies')  
+           alert('Error - get - movies');
+           top.location.href="404.html"
         }   
     });
 }
 
+
+
+function displayPreviousImage(movies , index) {
+    $("#our-recomandation").empty();
+    let movie = movies[index];
+    $('#our-recomandation').append("<img src = '" +'http://localhost:8080/' + movie.image + "' class='img-popular-big' >" );
+}
+ function startTimer() {
+  setInterval(displayNextImage, 3000);
+}
+/*
+function getPopulars(){
+    $.ajax({
+        url: 'http://localhost:8080/api/populars',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $("#our-recomandation").empty();
+            movies.forEach(movie => {
+                $('#our-recomandation').append("<img src = '" +'http://localhost:8080/' + movie.image + "'>" );
+            });
+        },  
+        error:function(){  
+           alert('Error - get - movies')  
+        }   
+    });
+}
+*/
+let index = 0;
+function getPopulars(){
+    $.ajax({
+        url: 'http://localhost:8080/api/populars',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            displayPreviousImage(movies, index )
+            index++;
+            if(index == 5) index = 0;
+        },  
+        error:function(){  
+           alert('Error - get - movies');
+           top.location.href="404.html";
+        }   
+    });
+}
+
+/*
 function getMoviesByCategory(category){
     console.log(`http://localhost:8080/api/categories/:${category}`);
     $.ajax({
@@ -125,10 +190,12 @@ function getMoviesByCategory(category){
     });
         },
         error:function(){  
-           alert('Error - getMoviesByCategory')  
+           alert('Error - getMoviesByCategory');
+           top.location.href="404.html";
         }   
     });
 }
+
 
 function Parseusername(){
     let user = localStorage.getItem("User");
@@ -137,6 +204,9 @@ function Parseusername(){
         `${user}`
 );}
     
+*/
+/*
+
 function getMoviesDetalies(){
     $.ajax({
         url: 'http://localhost:8080/api/movies',
@@ -159,7 +229,8 @@ function getMoviesDetalies(){
         console.log(sortedInput);
         },  
         error:function(){  
-           alert('Error - get - movies')  
+           alert('Error - get - movies');
+           top.location.href="404.html";
         }   
     });
 }
@@ -205,6 +276,9 @@ function getMovie(){
 
 
 
+
+*/
+
 function getIMDB(name) {
     const formData = {
         'name' : name
@@ -234,10 +308,14 @@ function getIMDB(name) {
         error: function(message) {
             console.log(message);
             alert('Error - index')
+        error: function() {
+            alert('Error - index');
+            top.location.href="404.html";
         }
     });
 
 };
+
 
 function getComedy(){
     $.ajax({
@@ -256,7 +334,8 @@ function getComedy(){
     });
         },
         error:function(){  
-           alert('Error - get - movies')  
+           alert('Error - get - movies');
+           top.location.href="404.html";
         }   
     });
 }
@@ -280,7 +359,8 @@ function getAction(){
     });
         },
         error:function(){  
-           alert('Error - get - movies')  
+           alert('Error - get - movies');
+           top.location.href="404.html";
         }   
     });
 }
@@ -303,12 +383,138 @@ function getDrama(){
     });
         },
         error:function(){  
-           alert('Error - get - movies')  
+           alert('Error - get - movies');
+            top.location.href="404.html";
+        }   
+    });
+}
+function getRomance(){
+    $.ajax({
+        url: 'http://localhost:8080/api/categories/Romance',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $(".list4").empty();
+            $(".list4").append("<h4>Romance</h4>");
+            movies.forEach(movie => {
+                $('.list4').append(
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
+            "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
+
+            "</article>"
+        );
+    });
+        },
+        error:function(){  
+           alert('Error - get - movies');
+            top.location.href="404.html";
+        }   
+    });
+}
+function getThriller(){
+    $.ajax({
+        url: 'http://localhost:8080/api/categories/Thriller',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $(".list5").empty();
+            $(".list5").append("<h4>Thriller</h4>");
+            movies.forEach(movie => {
+                $('.list5').append(
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
+            "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
+
+            "</article>"
+        );
+    });
+        },
+        error:function(){  
+           alert('Error - get - movies');
+            top.location.href="404.html";
         }   
     });
 }
 */
 
+
+function getAnimation(){
+    $.ajax({
+        url: 'http://localhost:8080/api/categories/Animation',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $(".list6").empty();
+            $(".list6").append("<h4>Animation</h4>");
+            movies.forEach(movie => {
+                $('.list6').append(
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
+            "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
+
+            "</article>"
+        );
+    });
+        },
+        error:function(){  
+           alert('Error - get - movies');
+            top.location.href="404.html";
+        }   
+    });
+}
+function getAdventure(){
+    $.ajax({
+        url: 'http://localhost:8080/api/categories/Adventure',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $(".list7").empty();
+            $(".list7").append("<h4>Adventure</h4>");
+            movies.forEach(movie => {
+                $('.list7').append(
+                '<article class="movie-mini hvr-curl-top-right hvr-shrink" onClick="sendIdToMovie(\'' + movie._id + '\')" >' +
+            "<img src = '" +'http://localhost:8080/' + movie.image + "'>" +
+
+            "</article>"
+        );
+    });
+        },
+        error:function(){  
+           alert('Error - get - movies');
+            top.location.href="404.html";
+        }   
+    });
+}
+function getMovie(){
+    $.ajax({
+        url: `http://localhost:8080/api/movies/${localStorage.getItem("favoriteMovie")}`,
+        type: 'GET',
+        success: function(movie) {
+            console.log('Success - movieID');
+            $("#movie-header").empty();
+            $("#movie-header").append(movie.movie.name +" - Movie");
+            $("#movie").empty();
+            $("#movie").append(
+                "<section id='movie-image'>" + 
+                "<img src='" +'http://localhost:8080/' + movie.movie.image + "'></section>"+
+                "<div id='movie-details'><navbar class='movie-left'><ul>"+
+                "<li><label>Name</label> : <span class='movie-name'>" + movie.movie.name + "</span></li>" +
+                "<li><label>Time</label> : <span>"+movie.movie.runTime+"</span></li>" +
+                " <li><label>Date</label> : <span>"+movie.movie.releaseDate+"</span></li>" +
+                "<li><label>Rate</label> : <span>"+7.4+"</span></li></ul></navbar>" +
+                "<aside class='movie-right'><ul>"+       
+                "<li><label>Categories</label> : <span>"+movie.movie.categories+"</span></li>"+
+                "<li><label>Actors</label> : <span>"+movie.movie.actors+"</span></li>"+ 
+                "<li><label>Writer</label> : <span>"+movie.movie.writer+"</span></li>"+ 
+                "<li><label>Director</label> : <span>"+movie.movie.director+"</span></li></ul></aside>"+ 
+                "<p><label>Story Line</label> : <span>"+movie.movie.storyline+"</span></p></div>"
+            );
+            
+        },
+        error:function(){  
+           //alert('Error - get movie');
+            //top.location.href="404.html";
+        }   
+    });
+}
 
 
 function postComment(){
@@ -333,6 +539,7 @@ function postComment(){
         .fail(function(jqXHR, textStatus, message){  
             alert(`Error - new Comment - ${textStatus} ,  ${message}`); 
             $('error-handler').html(JSON.stringify(err));
+            top.location.href="404.html";
         });
 }
 
@@ -355,10 +562,60 @@ function getComments(){
             )});
         },
         error:function(){  
-           alert('Error - index')  
+           //alert('Error - get comments');
+           // top.location.href="404.html";
         }   
      })
 };
+
+
+/*
+<div id="recommend-pid">
+            <article>
+                <aside>
+                    <img src="img/background-1.jpg">
+                </aside>
+                <nav>
+                    <ul>
+                        <li><label>Name</label><span class='movie-name'>" + movie.movie.name </span></li>
+                        <li><label>Run Time</label><span>" + movie.movie.runTime </span></li>
+                        <li><label>Categories</label><span>" + movie.movie.categories </span></li>
+                        <li><label>Release Date</label><span>" + movie.movie.releaseDate </span></li>
+                        <li><label>Actors</label><span>" + movie.movie.actors </span></li>
+                        <li><label>Storyline</label><span>" + movie.movie.runTime </span></li>
+                    </ul>
+                </nav>
+            </article>
+        </div>
+
+*/
+
+function getRecomandations(){
+     $.ajax({
+        url: 'http://localhost:8080/api/populars/',
+        type: 'GET',
+        success: function(movies) {
+            console.log(`Success - get - movies = ${movies.length}`);
+            $("#recommend-pid").empty();
+            movies.forEach(movie => {
+                $("#recommend-pid").append(
+                    "<article><aside><img src = '" +'http://localhost:8080/' +  movie.image + "'>" +
+                    '</aside><nav><ul><li><label>Name: </label><span class="movie-name">'+  movie.name + ''+    
+                    '<li><label>Run Time: </label><span>'+ movie.runTime + ''+ 
+                    '<li><label>Categories: </label><span>'+  movie.categories + ''+ 
+                    '<li><label>Release Date: </label><span>'+  movie.releaseDate + ''+ 
+                    '<li><label>Actors: </label><span>'+  movie.actors + ''+ 
+                    '<li><label>Story Line: </label><span>'+  movie.storyline + ''+ '</ul></nav></article>'
+                );
+            });
+        },  
+        error:function(){  
+           alert('Error - get - movies');
+           //top.location.href="404.html"
+        }   
+    });
+}
+
 
 
 $(document).on('click', '#test', function(e) {
@@ -368,6 +625,10 @@ $(document).on('click', '#test', function(e) {
 
 });
 
+$(document).on('click', '.img-popular-big', function(e) {
+    top.location.href="recomend.html"
+});
+               
 $(document).on('click', '#login-button', function(e){
     e.preventDefault();
     postLogin();

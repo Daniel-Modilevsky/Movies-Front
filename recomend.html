@@ -60,18 +60,31 @@
     
     <main data-aos="fade-up">
         <header>
-            <h1>Recomandation</h1>
+            <h1>Site Recomandation</h1>
              <form>
                 <input class="form-control search-bar" type="search" placeholder="Search Users" aria-label="Search">
                 <button class="btn btn-outline-info search-button" type="submit"><i class="bx bx-search"></i></button>
             </form>
         </header>
-        
+        <div id="recommend-pid">
+            <article>
+                <aside>
+                    <img src="img/background-1.jpg">
+                </aside>
+                <nav>
+                    <ul>
+                        <li><label>Name</label><span class='movie-name'>" + movie.movie.name </span></li>
+                        <li><label>Run Time</label><span>" + movie.movie.runTime </span></li>
+                        <li><label>Categories</label><span>" + movie.movie.categories </span></li>
+                        <li><label>Release Date</label><span>" + movie.movie.releaseDate </span></li>
+                        <li><label>Actors</label><span>" + movie.movie.actors </span></li>
+                        <li><label>Storyline</label><span>" + movie.movie.runTime </span></li>
+                    </ul>
+                </nav>
+            </article>
+        </div>
         
     </main>
-    
-
-    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
