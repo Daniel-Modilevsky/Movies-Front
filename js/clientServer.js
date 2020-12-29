@@ -2,34 +2,25 @@
 /*jslint browser: true*/
 /*eslint no-console: "error"*/
 
-//const { IMDB } = require("../../movies-back/api/movies/movies-controller");
-
-
 $(function() {
-    //getMovie();
-    //getComments();
-
+    getComments();
     //getMovies();
-    /*    */
-    getIndex();
-<<<<<<< HEAD
-     */
+
     getIndex();
 
-=======
->>>>>>> f83e27b1656ac582e08391e92c48e326d7ea9d67
+
     getComedy();
     getAction();
     getDrama();
     getMovie();
     getComments();
-    //getPopulars();
-    //setInterval(function(){ getPopulars(); }, 3000);
+    getPopulars();
+    setInterval(function(){ getPopulars(); }, 3000);
     getRomance();
     getThriller();
     getAnimation();
     getAdventure();
-    //getRecomandations()
+    getRecomandations()
 });
 
 let susu = '5fdf22df968be632f0b3c60c';
@@ -67,15 +58,11 @@ function postLogin(){
             async:false,
             dataType : 'json'
         })
-        .done(function(message) {
-            console.log(`Success - Login - ${message}`);
-<<<<<<< HEAD
+        .done(function(user) {
+            console.log(`Success - Login - ${user}`);
             console.log(localStorage.getItem("User"));
             localStorage.setItem("User", formData.user_name);
-=======
-            localStorage.setItem("User", message);
             console.log(localStorage.getItem("User"));
->>>>>>> f83e27b1656ac582e08391e92c48e326d7ea9d67
             top.location.href="home.html"
         })
         .fail(function(jqXHR, textStatus, message){  
@@ -109,7 +96,6 @@ function postRegister(){
         });
 }
 
-
 function getMovies(){
     $.ajax({
         url: 'http://localhost:8080/api/movies',
@@ -133,16 +119,15 @@ function getMovies(){
     });
 }
 
-
-
 function displayPreviousImage(movies , index) {
     $("#our-recomandation").empty();
     let movie = movies[index];
     $('#our-recomandation').append("<img src = '" +'http://localhost:8080/' + movie.image + "' class='img-popular-big' >" );
 }
- function startTimer() {
+function startTimer() {
   setInterval(displayNextImage, 3000);
 }
+
 /*
 function getPopulars(){
     $.ajax({
@@ -313,9 +298,6 @@ function getIMDB(name) {
             
            // console.log('Success - Index');
         },
-        error: function(message) {
-            console.log(message);
-            alert('Error - index')
         error: function() {
             alert('Error - index');
             top.location.href="404.html";
@@ -347,8 +329,6 @@ function getComedy(){
         }   
     });
 }
-/*
-
 function getAction(){
     $.ajax({
         url: 'http://localhost:8080/api/categories/Action',
@@ -372,7 +352,6 @@ function getAction(){
         }   
     });
 }
-
 function getDrama(){
     $.ajax({
         url: 'http://localhost:8080/api/categories/Drama',
@@ -442,9 +421,6 @@ function getThriller(){
         }   
     });
 }
-*/
-
-
 function getAnimation(){
     $.ajax({
         url: 'http://localhost:8080/api/categories/Animation',
@@ -491,6 +467,7 @@ function getAdventure(){
         }   
     });
 }
+    
 /*function getMovie(){
     $.ajax({
         url: `http://localhost:8080/api/movies/${localStorage.getItem("favoriteMovie")}`,
@@ -532,7 +509,6 @@ function Parseusername(){
         `${user}`
     );
 ;}
-
 
 function postComment(){
     const formData = {
@@ -584,29 +560,6 @@ function getComments(){
         }   
      })
 };
-
-
-/*
-<div id="recommend-pid">
-            <article>
-                <aside>
-                    <img src="img/background-1.jpg">
-                </aside>
-                <nav>
-                    <ul>
-                        <li><label>Name</label><span class='movie-name'>" + movie.movie.name </span></li>
-                        <li><label>Run Time</label><span>" + movie.movie.runTime </span></li>
-                        <li><label>Categories</label><span>" + movie.movie.categories </span></li>
-                        <li><label>Release Date</label><span>" + movie.movie.releaseDate </span></li>
-                        <li><label>Actors</label><span>" + movie.movie.actors </span></li>
-                        <li><label>Storyline</label><span>" + movie.movie.runTime </span></li>
-                    </ul>
-                </nav>
-            </article>
-        </div>
-
-*/
-
 
 function getRecomandations(){
      $.ajax({
@@ -673,7 +626,6 @@ function getMovie(){
     });
 }
 
-
 $(document).on('click', '#test', function(e) {
     alert("Here");
     getIMDB("Avengers");
@@ -705,6 +657,7 @@ $(document).on('click', '#comment-button', function(e){
     e.preventDefault();
     postComment();
 });
+    
 //setTimeout(functionToRunVerySoonButNotNow);
 //Promise.resolve().then(functionToRunVerySoonButNotNow);
 $( "#TESTME" ).click(function(e) {
@@ -733,9 +686,3 @@ $(document).on('click', '#TopRated', function(e){
     //console.log(moviesarr);
 });
 
-/*
-$(document).on('click', '.movie-mini', function(e){
-    e.preventDefault();
-    sendIdToMovie();
-});
-*/
