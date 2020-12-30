@@ -53,7 +53,7 @@
         <nav class="nav-footer">
             <ul>
                 <li><a href="#"> Privacy Policy </a></li>
-                <li> © 2020 Daniel Modilevsky Jonatan Kubany.</li>
+                <li> © 2020 Daniel Modilevsky Jonatan Kobany.</li>
             </ul>
         </nav>
     </nav>
@@ -98,7 +98,17 @@
 
     <!-- Template Main JS File -->
     <script src="js/clientServer.js"></script>
-    <script>Parseusername()</script>
+    <script>
+        Parseusername();
+        getMoviesByCategory('Comedy', '.list1');
+        getMoviesByCategory('Action', '.list2');
+        getMoviesByCategory('Drama', '.list3');
+        getMoviesByCategory('Romance', '.list4');
+        getMoviesByCategory('Thriller', '.list5');
+        getMoviesByCategory('Animation', '.list6');
+        getMoviesByCategory('Adventure', '.list7');
+    </script>    
     <script> AOS.init();  </script>
+    
 </body>
 </html>

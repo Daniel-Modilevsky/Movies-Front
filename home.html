@@ -90,7 +90,14 @@
 
     <!-- Template Main JS File -->
     <script src="js/clientServer.js"></script>
-    <script>Parseusername()</script>
+    <script>
+        Parseusername();
+        getMoviesByCategory('Comedy', '.list1');
+        getMoviesByCategory('Action', '.list2');
+        getMoviesByCategory('Drama', '.list3');
+        getPopulars();
+        setInterval(function(){ getPopulars(); }, 3000);
+    </script>
     <script> AOS.init();  </script>
 </body>
 </html>
