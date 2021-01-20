@@ -96,6 +96,23 @@ function getMoviesByCategory(category, list){
         }   
     });
 }
+
+function getMoviesByCategory(category){
+    console.log(`https://movies-smart.herokuapp.com/api/categories/:${category}`);
+    $.ajax({
+        url: `https://movies-smart.herokuapp.com/api/categories/${category}`,
+        type: 'GET',
+        success: function(movies) {
+            localStorage.setItem(category ,movmovies);
+        },
+        error:function(){  
+           alert('Error - getMoviesByCategory');
+           top.location.href="404.html";
+        }   
+    });
+}
+
+
 function getIMDB(name) {
     const formData = {
         'name' : name
@@ -231,6 +248,73 @@ function getMovie(){
     });
 }
 
+function getSmartVals(){
+    const queryString = $('#search-form').serialize();
+    const vals = parseQueryString(queryString);
+    console.log(vals);
+    let FirstLetter = vals.FirstLetter;
+    console.log(FirstLetter);
+    console.log(vals.Pet);
+    const formData = {
+        'vals' : vals
+    };
+    $.ajax({
+        url: 'http://localhost:8080/api/movies/smart',
+        type: 'GET', 
+        data:formData,
+        cache: false,
+        async:false,
+        dataType : 'json',
+        success: function(movie) {
+            //console.log(JSON.stringify(movie.name));
+            console.log(movie.item.name);
+            console.log(movie.item.categories);
+            console.log(movie.item.id);
+            sendIdToMovie(movie.item.id);
+            top.location.href="movie.html";
+            getIMDB(movie.item.name);
+            const data = JSON.parse(localStorage.getItem(movie.item.name));
+            console.log(JSON.stringify(data));
+            
+            $("#movie-header").empty();
+            $("#movie-header").append(data.data.title +" - Movie");
+            $("#movie").empty();
+            $("#movie").append(
+                "<section id='movie-image'>" + 
+                "<img src='" + data.data.poster + "'></section>"+
+                "<div id='movie-details'><navbar class='movie-left'><ul>"+
+                "<li><label>Name</label> : <span class='movie-name'>" + data.data.title + "</span></li>" +
+                "<li><label>Time</label> : <span>"+data.data.length+"</span></li>" +
+                " <li><label>Year</label> : <span>"+data.data.year+"</span></li>" +
+                "<li><label>Rate</label> : <span>"+data.data.rating+"</span></li></ul></navbar>" +
+                "<aside class='movie-right'><ul>"+       
+                "<li><label>Categories</label> : <span>"+movie.item.categories+"</span></li>"+
+                "<li><label>Actors</label> : <span>"+movie.item.actors+"</span></li>"+ 
+                "<li><label>Writer</label> : <span>"+movie.item.writer+"</span></li>"+ 
+                "<li><label>Director</label> : <span>"+movie.item.director+"</span></li></ul></aside>"+ 
+                "<br>"+
+                "<br>"+
+                "<p><label>Story Line</label> : <span>"+data.data.plot+"</span></p></div>"
+            );
+        },  
+        error:function(jqXHR, textStatus, message){  
+            //$('.error-box').append(`<h2>errors</h2><p>`+message+`</p>`);
+        }
+    })   
+}
+
+var parseQueryString = function( queryString ) {
+    var params = {}, queries, temp, i, l;
+
+    queries = queryString.split("&");
+    for ( i = 0, l = queries.length; i < l; i++ ) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+
+    return params;
+};
+
 
 $(document).on('click', '.img-popular-big', function(e) {
     top.location.href="recomend.html"
@@ -255,4 +339,9 @@ $(document).on('click', '#TopRated', function(e){
     getIMDB("Avengers");
     e.preventDefault();
     e.stopPropagation();    
+});
+$(document).on('click', '#Search', function(e) {
+    e.preventDefault();
+    getSmartVals();
+
 });

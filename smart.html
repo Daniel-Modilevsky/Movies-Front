@@ -8,18 +8,21 @@
     <title> Smart Search </title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- CDN CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.0/venobox.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://allyoucan.cloud/cdn/icofont/1.0.1/icofont.css" integrity="sha384-jbCTJB16Q17718YM9U22iJkhuGbS0Gd2LjaWb4YJEZToOPmnKDjySVa323U+W7Fv" crossorigin="anonymous">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" rel="stylesheet">
     <link href="css/hover.css" rel="stylesheet">
 
-    
+
 
 
     <!-- Template Main CSS File -->
@@ -48,7 +51,7 @@
 
         <div id="mini-profile">
             <img src="img/profile-demo.png">
-                <h4 id = "userName" class="text-light"> </h4>       
+            <h4 id="userName" class="text-light"> </h4>
         </div>
         <nav class="nav-footer">
             <ul>
@@ -57,32 +60,116 @@
             </ul>
         </nav>
     </nav>
-    
+
     <main data-aos="fade-up">
         <header>
             <h1>Smart Search</h1>
-             <form>
-                <input class="form-control search-bar" type="search" placeholder="Search Users" aria-label="Search">
+            <form>
+                <input class="form-control search-bar" placeholder="Smart" aria-label="Search">
                 <button class="btn btn-outline-info search-button" type="submit"><i class="bx bx-search"></i></button>
             </form>
         </header>
-        
-        <p style="color:white">Waiting for the new release in 07.02.21...</p>
-    </main>
-    
+        <form data-aos="fade-up" id="search-form">
+            <a href="index.html" class="h-logo" data-aos="zoom-in"><img src="img/logo.png" alt="" class="logo-t"></a>
+            <h1 style="color: white"> Smart Search </h1>
 
-    
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label style="color: white">Your name first letter</label>
+                    <input type="text" class="form-control" placeholder="Just one letter" name="FirstLetter">
+                </div>
+                <div class="form-group col-md-6">
+                    <label style="color: white">How much do you like Scarlett Johansson?</label>
+                    <br>
+                <input type="number" value = "2" max="10" min="1" name = "Scarlett" required />
+            </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label style="color: white">Do you have any pet?</label>
+                    <br>
+                    <input  name="Pet" type="radio" id="Yes" value="Yes" >
+                    <label style="color: white" for="Yes">Yes</label><br>
+                    <input name="Pet" type="radio" id="No" value= "No" checked>
+                    <label style="color: white" for="No">No</label><br>
+                    <input name="Pet" type="radio" id="Other" value="Other">
+                    <label style="color: white" for="Other">Wants to but dosent have</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <label style="color: white">How do you get to work?</label>
+                    <br>
+                    <input type="radio" id="vehicle1" name="vehicle" value="Bike" >
+                    <label style="color: white" for="vehicle1"> By bike</label><br>
+                    <input type="radio" id="vehicle2" name="vehicle" value="Car">
+                    <label style="color: white" for="vehicle2"> By car</label><br>
+                    <input type="radio" id="vehicle3" name="vehicle" value="Scooter" checked>
+                    <label style="color: white" for="vehicle3"> By scooter</label><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label style="color: white">Which categories do you like the most?</label>
+                    <br>
+                    <input type="radio" id="Action" name="Category" value="Action" checked>
+                    <label style="color: white" for="Action"> Action</label><br>
+                    <input type="radio" id="Drama" name="Category" value="Drama">
+                    <label style="color: white" for="Drama"> Drama</label><br>
+                    <input type="radio" id="Horor" name="Category" value="Horor">
+                    <label style="color: white" for="Horor"> Horor</label><br>
+                    <input type="radio" id="Romance" name="Category" value="Romance">
+                    <label style="color: white" for="Romance"> Romance</label><br>
+                    <input type="radio" id="Comedy" name="Category" value="Comedy">
+                    <label style="color: white" for="Comedy"> Comedy</label><br>
+                    <input type="radio" id="Sci-Fi" name="Category" value="Sci-Fi">
+                    <label style="color: white" for="Sci-Fi"> Sci-Fi</label><br>
+                </div>
+                <div class="form-group col-md-6">
+                    <label style="color: white">Do you belive in Aliens?</label>
+                    <br>
+                    <input type="radio" id="astrologyYes" name="Aliens" value="Yes" >
+                    <label style="color: white" for="Yes"> Yes</label><br>
+                    <input type="radio" id="astrologyNo" Aliens="No" value="No" checked>
+                    <label style="color: white" for="No"> No</label><br>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-10 center">
+                    <button class="btn btn-dark waves-effect waves-light m-r-10"
+                        id="Search">Search</button>
+                    <button type="reset" class="btn btn-primary waves-effect waves-light m-r-10">Clear</button>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="error-box">
+                </div>
+            </div>
+        </form>
+    </main>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.0/venobox.js"></script>
 
     <!-- Template Main JS File -->
     <script src="js/clientServer.js"></script>
     <script> AOS.init();  </script>
-     <script>
+    <script>
         Parseusername();
-    </script> 
+    </script>
 </body>
+
 </html>
