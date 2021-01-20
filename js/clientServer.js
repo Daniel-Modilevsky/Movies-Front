@@ -97,22 +97,6 @@ function getMoviesByCategory(category, list){
     });
 }
 
-function getMoviesByCategory(category){
-    console.log(`https://movies-smart.herokuapp.com/api/categories/:${category}`);
-    $.ajax({
-        url: `https://movies-smart.herokuapp.com/api/categories/${category}`,
-        type: 'GET',
-        success: function(movies) {
-            localStorage.setItem(category ,movmovies);
-        },
-        error:function(){  
-           alert('Error - getMoviesByCategory');
-           top.location.href="404.html";
-        }   
-    });
-}
-
-
 function getIMDB(name) {
     const formData = {
         'name' : name
