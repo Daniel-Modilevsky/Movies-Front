@@ -315,6 +315,69 @@ var parseQueryString = function( queryString ) {
     return params;
 };
 
+function okComment(id){
+    console.log(`okComment - ${id}`);
+     $.ajax({
+//            url: `https://movies-smart.herokuapp.com/api/approvecomments/:${id}`,
+            url: `http://localhost:8080/api/approvecomments/${id}`,
+            type: 'PUT', 
+            cache: false,
+            async:false,
+            dataType : 'json',
+            success: function(msg) {
+               console.log(`msg : ${msg}`);
+            },  
+            error:function(jqXHR, textStatus, message){  
+                console.log(`error : ${message}`);
+            }
+        })
+}
+function cancelComment(id){
+    console.log(`cancelComment - ${id}`);
+     $.ajax({
+            url: `http://localhost:8080/api/comments/${id}`,
+            type: 'DELETE', 
+            cache: false,
+            async:false,
+            dataType : 'json',
+            success: function(msg) {
+               console.log(`msg : ${msg}`);
+            },  
+            error:function(jqXHR, textStatus, message){  
+                console.log(`error : ${message}`);
+            }
+        })
+}
+function getAdminComment(id){
+    console.log(`getAdminComment - ${id}`);
+}
+function getAdminList(){
+    console.log(`getAdminList`);
+     $.ajax({
+        url: `https://movies-smart.herokuapp.com/api/admincomments`,
+        type: 'GET',
+        success: function(comments) {           
+            let myComments = comments.comments;
+            $("#Recomandation-pid").empty();
+            myComments.forEach(comment => {
+            $("#Recomandation-pid").append(
+                '<article class="pid-comment hvr-rectangle-out ">'+
+                '<section class="comment-movie">'+
+    //                     "<img src = '" +'https://movies-smart.herokuapp.com/' + movie.image + "'>" +
+                    '<img src="img/mini/rsz_furious-7.jpg">' +
+                '</section><section class="article-body">' + 
+                '<label>'+comment.creationByName+':</label>'+
+                '<p>'+comment.description+'</p></div>'+
+                '<section class="comment-buttons">'+
+                '<box-icon name="check-circle" class="button-ok" onClick="okComment(\'' + comment._id + '\')" ></box-icon>'+
+                '<box-icon name="x-circle" class="button-cancel" onClick="cancelComment(\'' + comment._id + '\')" ></box-icon></section></article>'   
+            )});
+        },
+        error:function(){  
+           alert('Error - get comments');
+        }   
+     })
+}
 
 $(document).on('click', '.img-popular-big', function(e) {
     top.location.href="recomend.html"
@@ -343,5 +406,4 @@ $(document).on('click', '#TopRated', function(e){
 $(document).on('click', '#Search', function(e) {
     e.preventDefault();
     getSmartVals();
-
 });

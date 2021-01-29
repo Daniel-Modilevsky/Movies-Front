@@ -621,5 +621,89 @@ header form .search-button {
 --------------------------------------------------------------*/
 
 
+/*--------------------------------------------------------------
+# Admin
+--------------------------------------------------------------*/
+#Recomandation-pid{
+    display: block;
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 80%;
+    border-radius: 30px;
+}
+.header-admin{
+    border-bottom: 1px solid gray;
+    width: 100%;
+    text-align: center; 
+    background-color: black;
+}
+.header-admin h2{
+    font-weight: bold;
+    color: #1da1f2;
+}
 
+#Recomandation-pid .pid-comment{
+    display: flex;
+    border: 0.5px solid gray;
+    background-color:aliceblue;
+    width: 100%;
+    margin-bottom: 2%;
+    height: 127px;
+ }
+ .pid-comment .comment-movie{
+    margin-left: 0%;
+	width: 15%;
+	display: inline-block;
+ }
+.pid-comment .article-body{
+	width: 60%;
+    height: 100%;
+	display: inline-flex;
+}
+.pid-comment .article-body label{
+	display: inline-block;
+	margin-left: 5%;
+	margin-top: 2%;
+    font-size: 18px;
+    font-weight: bold;
+    color:#333;
+}
+.pid-comment .article-body p{
+	display: inline-block;
+	font-size:14px;
+	margin-left: 3%;
+	margin-top: 2%;
+    height: 100%;
+    width: 100%;
+}
+.comment-buttons{
+    margin-top: 2%;
+    display: flex;
+}
+.button-cancel, .button-ok{
+    display: inline-block;
+    margin-top: 3%;
+    height: 40px;
+    width: 40px;
+}
+.button-ok:hover{
+    cursor: pointer;
+    background-color: aquamarine;
+    border-radius: 30px;
+}
+.button-cancel:hover{
+    cursor: pointer;
+    background-color:firebrick;
+    border-radius: 30px;
+}
+/*
+.pid-comment .comment-buttons{
+    display: inline-block;
+    margin-left: 75%;
+	width: 25%;
+}
+.pid-comment .comment-buttons box{
+    
+}
 
+*/
